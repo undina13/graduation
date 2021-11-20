@@ -23,8 +23,11 @@ public class GraduationApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        userRepository.save(new User(1, "User_First", "user@gmail.com",  "password", Set.of(Role.USER)));
-        userRepository.save(new User( 2, "Admin_Last","admin@javaops.ru",  "admin", Set.of(Role.USER, Role.ADMIN)));
-        System.out.println(userRepository.findAll());
+       userRepository.save(new User(1, "User_First", "user@gmail.com",  "password", Set.of(Role.USER)));
+       userRepository.save(new User( 2, "Admin_Last","admin@javaops.ru",  "admin", Set.of(Role.USER, Role.ADMIN)));
+
+
+        System.out.println(userRepository.findUserByEmail("user@gmail.com"));
+
     }
 }

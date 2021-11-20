@@ -1,7 +1,9 @@
 package com.undina.graduation.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
@@ -13,7 +15,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User extends AbstractNamedEntity {
     @Column(name = "email", nullable = false, unique = true)
@@ -39,4 +42,13 @@ public class User extends AbstractNamedEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(roles);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
