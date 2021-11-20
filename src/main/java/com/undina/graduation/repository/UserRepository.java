@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
-//    @Query("SELECT u FROM User u WHERE u.email = LOWER(:email)")
-//    @Cacheable("users")
-    Optional<User> findUserByEmail(String email);
+    @Query("SELECT u FROM User u WHERE u.email = LOWER(:email)")
+   @Cacheable("users")
+    Optional<User> findByEmailIgnoreCase(String email);
 }

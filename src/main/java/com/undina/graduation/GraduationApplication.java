@@ -27,7 +27,7 @@ public class GraduationApplication implements ApplicationRunner {
        userRepository.save(new User( 2, "Admin_Last","admin@javaops.ru",  "admin", Set.of(Role.USER, Role.ADMIN)));
 
 
-        System.out.println(userRepository.findUserByEmail("user@gmail.com"));
+        System.out.println(userRepository.findByEmailIgnoreCase("user@gmail.com"));
 
     }
 }
