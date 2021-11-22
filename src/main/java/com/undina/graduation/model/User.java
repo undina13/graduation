@@ -1,15 +1,14 @@
 package com.undina.graduation.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -18,7 +17,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User extends AbstractNamedEntity {
+@AllArgsConstructor
+public class User extends AbstractNamedEntity implements Serializable {
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotEmpty
@@ -33,7 +33,7 @@ public class User extends AbstractNamedEntity {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    Set<Role> roles;
 
     public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id, name);
